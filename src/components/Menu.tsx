@@ -25,6 +25,7 @@ function Menu() {
 
   return (
     <nav className="w-full flex text-black" ref={bgRef}>
+      {/* ? WE NEED THIS?? TO OOLDSCHOOL */}
       <Image
         alt="Logo"
         src="/favicon.ico"
