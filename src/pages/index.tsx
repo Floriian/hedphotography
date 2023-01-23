@@ -1,9 +1,89 @@
 import React from "react";
+import { supabase } from "../utils/supabase";
+import CustomImage from "../components/CustomImage";
+import SideCard from "../components/SideCard";
+import HeroImage from "../components/HeroImage";
+import { Allison } from "@next/font/google";
 
-type Props = {};
+const allison = Allison({
+  weight: "400",
+});
 
-function index({}: Props) {
-  return <div className="text-red-500">index</div>;
+type Props = {
+  images: Array<{ publicUrl: string }>;
+  aboutme: Array<{ text: string }>;
+  heroImage: {
+    publicUrl: string;
+  };
+};
+
+export async function getStaticProps() {
+  let images: Array<{ publicUrl: string }> = [];
+  const { data: imageNames } = await supabase.storage
+    .from("images")
+    .list("gallery");
+
+  //Todo: If no images, return placeholders.
+
+  for (let img of imageNames!) {
+    const { data: imageData } = await supabase.storage
+      .from("images")
+      .getPublicUrl(`gallery/${img.name}`);
+
+    images.push(imageData);
+  }
+
+  const { data: heroImage } = await supabase.storage
+    .from("images")
+    .getPublicUrl("mainpage/home.jpg");
+
+  const { data: aboutme } = await supabase.from("about_me").select("text");
+  return {
+    props: {
+      images,
+      aboutme,
+      heroImage,
+    },
+  };
 }
 
-export default index;
+function Index({ images, aboutme, heroImage }: Props) {
+  return (
+    <>
+      <section>
+        <HeroImage url={heroImage.publicUrl}>
+          <h1 className="absolute text-xl text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 uppercase text-center">
+            The art of{" "}
+            <span className={allison.className + " text-5xl"}>
+              {" "}
+              Photography
+            </span>
+          </h1>
+        </HeroImage>
+      </section>
+      <section className="flex justify-center">
+        <SideCard
+          content={aboutme[0].text}
+          href="/about-me"
+          image="/favicon.ico"
+          imageAlt="Me "
+        />
+      </section>
+      <section className="container mx-auto p-10">
+        <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-3">
+          {images.map((img) => (
+            <CustomImage
+              alt="Image"
+              height={600}
+              url={img.publicUrl}
+              width={600}
+              key={img.publicUrl}
+            />
+          ))}
+        </div>
+      </section>
+    </>
+  );
+}
+
+export default Index;
