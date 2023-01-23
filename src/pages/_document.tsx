@@ -6,13 +6,8 @@ export default function Document() {
     <Html lang="en">
       <Head />
       <body>
-        <div className="fixed w-full">
-          <Menu />
-        </div>
-        <div className="relative -z-10">
-          <Main />
-          <NextScript />
-        </div>
+        <Main />
+        <NextScript />
       </body>
     </Html>
   );
