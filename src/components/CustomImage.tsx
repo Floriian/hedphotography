@@ -6,9 +6,16 @@ type Props = {
   alt: string;
   width: number;
   height: number;
+  className?: string;
 };
 
-export default function CustomImage({ url, alt, width, height }: Props) {
+export default function CustomImage({
+  url,
+  alt,
+  width,
+  height,
+  className,
+}: Props) {
   return (
     <Image
       alt={alt}
@@ -16,7 +23,9 @@ export default function CustomImage({ url, alt, width, height }: Props) {
       width={width}
       height={height}
       priority
-      className="aspect-square object-cover w-full h-full rounded-xl"
+      className={
+        "aspect-square object-cover w-full h-full rounded-xl " + className
+      }
     />
   );
 }
