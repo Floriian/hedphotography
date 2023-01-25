@@ -1,5 +1,5 @@
-import Image from "next/image";
-import React from "react";
+import Image from 'next/image';
+import React from 'react';
 
 type Props = {
   url: string;
@@ -24,7 +24,7 @@ export default function CustomImage({
       height={height}
       priority
       className={
-        "aspect-square object-cover w-full h-full rounded-xl " + className
+        'aspect-square h-full w-full rounded-xl object-cover ' + className
       }
     />
   );

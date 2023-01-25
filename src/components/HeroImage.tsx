@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from 'next/image';
 
 type Props = {
   url: string;
@@ -6,13 +6,13 @@ type Props = {
 };
 export default function HeroImage({ url, children }: Props) {
   return (
-    <div className="relative w-full h-full">
+    <div className="relative h-full w-full">
       <Image
         src={url}
         alt="Hero image"
         width={1920}
         height={1080}
-        className="max-h-[840px] w-full object-cover rounded-b-xl"
+        className="max-h-[840px] w-full rounded-b-xl object-cover"
         loading="lazy"
       />
       {children}

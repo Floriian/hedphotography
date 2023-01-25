@@ -1,6 +1,6 @@
-import Image from "next/image";
-import Link from "next/link";
-import React from "react";
+import Image from 'next/image';
+import Link from 'next/link';
+import React from 'react';
 
 type Props = {
   image?: string;
@@ -11,19 +11,24 @@ type Props = {
 
 export default function SideCard({ image, imageAlt, content, href }: Props) {
   return (
-    <div className="w-auto p-5 m-2 mt-5 border-gray-400 shadow-black shadow-md rounded-xl transition-all duration-300 bg-white">
+    <div className="m-2 mt-5 w-auto rounded-xl border-gray-400 bg-white p-5 shadow-md shadow-black transition-all duration-300">
       <div className="flex">
         {image && imageAlt ? (
-          <Image src={image} width={64} height={64} alt={imageAlt} />
+          <Image
+            src={image}
+            width={64}
+            height={64}
+            alt={imageAlt}
+          />
         ) : null}
-        <p className="text-justify max-w-sm ml-2 w-full">
+        <p className="ml-2 w-full max-w-sm text-justify">
           <span className="text-lg font-bold">Hey!</span>
           <br />
           <span className="hidden md:block">
             {content.slice(0, 120)}
             <Link
               href={href}
-              className="text-blue-800 hover:text-blue-900 duration-100 transition-colors"
+              className="text-blue-800 transition-colors duration-100 hover:text-blue-900"
             >
               ...Tovább
             </Link>

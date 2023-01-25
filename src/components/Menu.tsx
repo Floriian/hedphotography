@@ -1,12 +1,11 @@
-import Image from "next/image";
-import Link from "next/link";
-import { useScroll } from "../hooks";
-import React, { useEffect, useRef, useState } from "react";
+import Image from 'next/image';
+import Link from 'next/link';
+import { useScroll } from '../hooks';
+import React, { useEffect, useRef, useState } from 'react';
 
 function Menu() {
   const scroll = useScroll();
   const bgRef = useRef<HTMLDivElement>(null);
-
   //TODO with classnames.
   useEffect(() => {
     // const opacity = 1 - (window.screen.height - scroll) / 100;
@@ -14,24 +13,27 @@ function Menu() {
 
     if (scroll === 0) {
       bgRef.current!.style.cssText += `background-color: rgba(0,0,0, 0)`;
-      bgRef.current!.style.color = "white";
+      bgRef.current!.style.color = 'white';
     }
 
     if (scroll > 0) {
-      bgRef.current!.style.color = "black";
+      bgRef.current!.style.color = 'black';
     }
 
     bgRef.current!.style.cssText += `background-color: rgba(241,245,249, ${opacity})`;
   }, [scroll]);
 
   return (
-    <nav className="w-full flex justify-center">
-      <div className="w-fit m-10 px-16 py-3 text-xl rounded-full" ref={bgRef}>
+    <nav className="flex w-full justify-center">
+      <div
+        className="m-10 w-fit rounded-full px-16 py-3 text-xl"
+        ref={bgRef}
+      >
         <ul className="flex">
           <li>
             <Link
               href="/"
-              className="p-2 hover:text-slate-600 rounded-full transition-colors duration-150"
+              className="rounded-full p-2 transition-colors duration-150 hover:text-slate-600"
             >
               Főoldal
             </Link>
@@ -39,7 +41,7 @@ function Menu() {
           <li>
             <Link
               href="/about-me"
-              className="p-2 hover:text-slate-600 rounded-full transition-colors duration-150"
+              className="rounded-full p-2 transition-colors duration-150 hover:text-slate-600"
             >
               Rólam
             </Link>
@@ -47,7 +49,7 @@ function Menu() {
           <li>
             <Link
               href="/galery"
-              className="p-2 hover:text-slate-600 rounded-full transition-colors duration-150"
+              className="rounded-full p-2 transition-colors duration-150 hover:text-slate-600"
             >
               Galéria
             </Link>
@@ -55,7 +57,7 @@ function Menu() {
           <li>
             <Link
               href="/contact"
-              className="p-2 hover:text-slate-600 rounded-full transition-colors duration-150"
+              className="rounded-full p-2 transition-colors duration-150 hover:text-slate-600"
             >
               Kapcsolat
             </Link>
