@@ -5,8 +5,9 @@ import React, { useEffect, useRef, useState } from "react";
 
 function Menu() {
   const scroll = useScroll();
-  const bgRef = useRef<HTMLElement>(null);
+  const bgRef = useRef<HTMLDivElement>(null);
 
+  //TODO with classnames.
   useEffect(() => {
     // const opacity = 1 - (window.screen.height - scroll) / 100;
     const opacity = scroll / 1000;
@@ -24,40 +25,42 @@ function Menu() {
   }, [scroll]);
 
   return (
-    <nav className="w-full flex text-black" ref={bgRef}>
-      {/* ? WE NEED THIS?? TO OOLDSCHOOL */}
-      <Image
-        alt="Logo"
-        src="/favicon.ico"
-        width={64}
-        height={64}
-        className="p-2"
-      />
-      <div className="flex w-full justify-center m-5">
-        <Link
-          href="/"
-          className="p-2  hover:text-gray-600  transition-colors duration-150"
-        >
-          Főoldal
-        </Link>
-        <Link
-          href="/about-me"
-          className="p-2  hover:text-gray-600  transition-colors duration-150"
-        >
-          Rólam
-        </Link>
-        <Link
-          href="/galery"
-          className="p-2  hover:text-gray-600  transition-colors duration-150"
-        >
-          Galéria
-        </Link>
-        <Link
-          href="/contact"
-          className="p-2  hover:text-gray-600  transition-colors duration-150"
-        >
-          Kapcsolat
-        </Link>
+    <nav className="w-full flex justify-center">
+      <div className="w-fit m-10 px-16 py-3 text-xl rounded-full" ref={bgRef}>
+        <ul className="flex">
+          <li>
+            <Link
+              href="/"
+              className="p-2 hover:text-slate-600 rounded-full transition-colors duration-150"
+            >
+              Főoldal
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/about-me"
+              className="p-2 hover:text-slate-600 rounded-full transition-colors duration-150"
+            >
+              Rólam
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/galery"
+              className="p-2 hover:text-slate-600 rounded-full transition-colors duration-150"
+            >
+              Galéria
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/contact"
+              className="p-2 hover:text-slate-600 rounded-full transition-colors duration-150"
+            >
+              Kapcsolat
+            </Link>
+          </li>
+        </ul>
       </div>
     </nav>
   );
