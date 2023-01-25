@@ -2,25 +2,33 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useScroll } from '../hooks';
 import React, { useEffect, useRef, useState } from 'react';
+import { useRouter } from 'next/router';
 
 function Menu() {
-  const scroll = useScroll();
+  const [isHomepage, setHomepage] = useState<boolean>();
   const bgRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
+  const scroll = useScroll();
+
   //TODO with classnames.
+
+  useEffect(() => {
+    if (router.pathname === '/') setHomepage(true);
+    if (router.pathname != '/') setHomepage(false);
+  }, [router.pathname]);
+
   useEffect(() => {
     // const opacity = 1 - (window.screen.height - scroll) / 100;
     const opacity = scroll / 1000;
 
-    if (scroll === 0) {
+    if (opacity <= 0.5) {
       bgRef.current!.style.cssText += `background-color: rgba(0,0,0, 0)`;
-      bgRef.current!.style.color = 'white';
+      bgRef.current!.style.cssText = `color: rgb(255,255,255);`;
     }
-
-    if (scroll > 0) {
-      bgRef.current!.style.color = 'black';
+    if (opacity > 0.5) {
+      bgRef.current!.style.cssText = `color: rgba(0,0,0, ${opacity});`;
     }
-
-    bgRef.current!.style.cssText += `background-color: rgba(241,245,249, ${opacity})`;
+    bgRef.current!.style.cssText += `background-color: rgba(241,245,249, ${opacity});`;
   }, [scroll]);
 
   return (
