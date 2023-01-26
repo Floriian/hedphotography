@@ -1,4 +1,8 @@
-import Menu from './Menu';
+import dynamic from 'next/dynamic';
+
+const Menu = dynamic(() => import('./Menu'), {
+  ssr: false,
+});
 
 type Props = {
   children: React.ReactNode;
@@ -7,10 +11,8 @@ type Props = {
 export default function Layout({ children }: Props) {
   return (
     <>
-      <div className="fixed w-full">
-        <Menu />
-      </div>
-      <div className="relative -z-10">{children}</div>
+      <Menu />
+      {children}
     </>
   );
 }

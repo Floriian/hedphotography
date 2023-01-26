@@ -9,32 +9,45 @@ function Menu() {
   const bgRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
   const scroll = useScroll();
-
-  //TODO with classnames.
-
   useEffect(() => {
-    if (router.pathname === '/') setHomepage(true);
-    if (router.pathname != '/') setHomepage(false);
+    if (window.location.pathname === '/') setHomepage(true);
+    if (window.location.pathname != '/') setHomepage(false);
   }, [router.pathname]);
+
+  //! TODO: FIND A BETTER SOLUTION FOR THIS
+  //* dynamic import on layout
 
   useEffect(() => {
     // const opacity = 1 - (window.screen.height - scroll) / 100;
-    const opacity = scroll / 1000;
+    if (isHomepage) {
+      const opacity = scroll / 1000;
 
-    if (opacity <= 0.5) {
-      bgRef.current!.style.cssText += `background-color: rgba(0,0,0, 0)`;
-      bgRef.current!.style.cssText = `color: rgb(255,255,255);`;
+      if (opacity <= 0.5) {
+        bgRef.current!.style.cssText += `background-color: rgba(0,0,0, 0)`;
+        bgRef.current!.style.cssText = `color: rgb(255,255,255);`;
+      }
+      if (opacity > 0.5) {
+        bgRef.current!.style.cssText = `color: rgba(0,0,0, ${opacity});`;
+      }
+      bgRef.current!.style.cssText += `background-color: rgba(241,245,249, ${opacity});`;
     }
-    if (opacity > 0.5) {
-      bgRef.current!.style.cssText = `color: rgba(0,0,0, ${opacity});`;
-    }
-    bgRef.current!.style.cssText += `background-color: rgba(241,245,249, ${opacity});`;
-  }, [scroll]);
+  }, [scroll, isHomepage]);
 
   return (
-    <nav className="flex w-full justify-center">
+    <nav className="fixed flex w-full justify-center">
       <div
-        className="m-10 w-fit rounded-full px-16 py-3 text-xl"
+        className={
+          isHomepage
+            ? 'm-10 w-fit rounded-full px-16 py-3 text-xl'
+            : 'm-10 w-fit rounded-full px-16 py-3 text-xl shadow-xl drop-shadow-xl'
+        }
+        style={
+          isHomepage
+            ? {
+                color: 'black',
+              }
+            : undefined
+        }
         ref={bgRef}
       >
         <ul className="flex">

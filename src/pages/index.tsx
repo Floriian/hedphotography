@@ -49,7 +49,7 @@ export async function getStaticProps() {
 
 function Index({ images, aboutme, heroImage }: Props) {
   return (
-    <>
+    <div className="relative -z-10">
       <section>
         <HeroImage url={heroImage.publicUrl}>
           <h1 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-xl uppercase text-white">
@@ -82,7 +82,7 @@ function Index({ images, aboutme, heroImage }: Props) {
           ))}
         </div>
       </section>
-    </>
+    </div>
   );
 }
 
