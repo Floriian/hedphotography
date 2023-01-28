@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useScroll } from '../hooks';
 import React, { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
+import { routes } from '../utils/routes';
 
 function Menu() {
   const [isHomepage, setHomepage] = useState<boolean>();
@@ -51,38 +52,16 @@ function Menu() {
         ref={bgRef}
       >
         <ul className="flex">
-          <li>
-            <Link
-              href="/"
-              className="rounded-full p-2 transition-colors duration-150 hover:text-slate-600"
-            >
-              Főoldal
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/about-me"
-              className="rounded-full p-2 transition-colors duration-150 hover:text-slate-600"
-            >
-              Rólam
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/galery"
-              className="rounded-full p-2 transition-colors duration-150 hover:text-slate-600"
-            >
-              Galéria
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/contact"
-              className="rounded-full p-2 transition-colors duration-150 hover:text-slate-600"
-            >
-              Kapcsolat
-            </Link>
-          </li>
+          {routes.map((route) => (
+            <li key={route.path}>
+              <Link
+                href={route.path}
+                className="rounded-full p-2 transition-colors duration-150 hover:text-slate-600"
+              >
+                {route.name}
+              </Link>
+            </li>
+          ))}
         </ul>
       </div>
     </nav>
