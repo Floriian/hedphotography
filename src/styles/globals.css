@@ -5,3 +5,7 @@
 body {
   @apply bg-slate-100;
 }
+
+input {
+  @apply w-full rounded-lg border border-gray-400 p-2 focus:outline-blue-300;
+}
