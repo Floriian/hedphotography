@@ -12,7 +12,7 @@ export default function Layout({ children }: Props) {
   return (
     <>
       <Menu />
-      {children}
+      <main>{children}</main>
     </>
   );
 }
