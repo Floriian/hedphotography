@@ -4,7 +4,6 @@ import CustomImage from '../components/CustomImage';
 import SideCard from '../components/SideCard';
 import HeroImage from '../components/HeroImage';
 import { Allison } from '@next/font/google';
-import Layout from '../components/Layout';
 
 const allison = Allison({
   weight: '400',

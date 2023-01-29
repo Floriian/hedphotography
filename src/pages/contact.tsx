@@ -1,6 +1,4 @@
 import React from 'react';
-import Layout from '../components/Layout';
-
 function contact() {
   return (
     <div className="flex h-screen justify-center">
