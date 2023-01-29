@@ -7,6 +7,4 @@ function gallery() {
   return <div>gallery</div>;
 }
 
-gallery.Layout = Layout;
-
 export default gallery;

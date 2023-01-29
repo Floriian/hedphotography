@@ -16,6 +16,4 @@ function AboutMe({}: Props) {
   );
 }
 
-AboutMe.Layout = Layout;
-
 export default AboutMe;

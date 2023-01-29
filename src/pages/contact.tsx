@@ -36,5 +36,4 @@ function contact() {
     </div>
   );
 }
-contact.Layout = Layout;
 export default contact;

@@ -87,6 +87,4 @@ function Index({ images, aboutme, heroImage }: Props) {
   );
 }
 
-Index.Layout = Layout;
-
 export default Index;
