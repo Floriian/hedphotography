@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import * as NextImage from 'next/image';
 import React from 'react';
 
 type Props = {
@@ -9,15 +9,9 @@ type Props = {
   className?: string;
 };
 
-export default function CustomImage({
-  url,
-  alt,
-  width,
-  height,
-  className,
-}: Props) {
+export default function Image({ url, alt, width, height, className }: Props) {
   return (
-    <Image
+    <NextImage.default
       alt={alt}
       src={url}
       width={width}
