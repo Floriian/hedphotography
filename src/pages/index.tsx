@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { supabase } from '../utils/supabase';
-import CustomImage from '../components/CustomImage';
+import Image from '../components/Image';
 import SideCard from '../components/SideCard';
 import HeroImage from '../components/HeroImage';
 import { Allison } from '@next/font/google';
@@ -48,6 +48,10 @@ export async function getStaticProps() {
 }
 
 function Index({ images, aboutme, heroImage }: Props) {
+  const randomImages = images
+    .sort(() => Math.random() - Math.random())
+    .slice(0, 9);
+
   return (
     <div className="relative -z-10">
       <section>
@@ -71,8 +75,8 @@ function Index({ images, aboutme, heroImage }: Props) {
       </section>
       <section className="container mx-auto p-10">
         <div className="grid gap-3 sm:grid-cols-1 md:grid-cols-3">
-          {images.map((img) => (
-            <CustomImage
+          {randomImages.map((img) => (
+            <Image
               alt="Image"
               height={600}
               url={img.publicUrl}
