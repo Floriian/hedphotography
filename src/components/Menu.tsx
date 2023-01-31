@@ -4,6 +4,7 @@ import { useScroll } from '../hooks';
 import React, { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import { routes } from '../utils/routes';
+import classNames from 'classnames';
 
 function Menu() {
   const [isHomepage, setHomepage] = useState<boolean>();
@@ -34,14 +35,21 @@ function Menu() {
     }
   }, [scroll, isHomepage]);
 
+  const styles = classNames({
+    'w-full px-16 py-3 text-xl': true,
+    'shadow-xl drop-shadow-xl':
+      !isHomepage || (isHomepage && scroll / 1000 > 0.3),
+  });
+
+  const navStyle = classNames({
+    'fixed flex w-full justify-center': isHomepage,
+    'flex w-full justify-center': !isHomepage,
+  });
+
   return (
-    <nav className="fixed flex w-full justify-center">
+    <nav className={navStyle}>
       <div
-        className={
-          isHomepage
-            ? 'm-10 w-fit rounded-full px-16 py-3 text-xl'
-            : 'm-10 w-fit rounded-full px-16 py-3 text-xl shadow-xl drop-shadow-xl'
-        }
+        className={styles}
         style={
           isHomepage
             ? {
@@ -51,7 +59,7 @@ function Menu() {
         }
         ref={bgRef}
       >
-        <ul className="flex">
+        <ul className="flex justify-center">
           {routes.map((route) => (
             <li key={route.path}>
               <Link
