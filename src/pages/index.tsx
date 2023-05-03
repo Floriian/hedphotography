@@ -28,6 +28,7 @@ function Index({ images }: Props) {
     images.reduce((acc, curr, i) => {
       const index = Math.floor(i / 3);
       acc[index] = acc[index] || [];
+      //@ts-ignore
       acc[index].push(curr);
       return acc;
     }, []);
