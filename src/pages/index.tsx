@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
-import Image from '../components/Image';
 import SideCard from '../components/SideCard';
 import HeroImage from '../components/HeroImage';
 import { Allison } from '@next/font/google';
+import ShowCase from '../components/ShowCase';
+import Image from 'next/image';
 
 const allison = Allison({
   weight: '400',
@@ -23,10 +24,18 @@ export async function getStaticProps() {
 }
 
 function Index({ images }: Props) {
+  const splittedArray: Array<{ name: string; publicUrl: string }>[] =
+    images.reduce((acc, curr, i) => {
+      const index = Math.floor(i / 3);
+      acc[index] = acc[index] || [];
+      acc[index].push(curr);
+      return acc;
+    }, []);
+
   return (
     <div className="relative -z-10">
       <section>
-        {/* <HeroImage url={heroImage.publicUrl}>
+        <HeroImage url="/header.jpg">
           <h1 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-xl uppercase text-white">
             The art of{' '}
             <span className={allison.className + ' text-5xl'}>
@@ -34,20 +43,35 @@ function Index({ images }: Props) {
               Photography
             </span>
           </h1>
-        </HeroImage> */}
+        </HeroImage>
       </section>
       <section className="flex justify-center">
-        {/* <SideCard
-          content={aboutme[0].text}
+        <SideCard
+          content="ipsum"
           href="/about-me"
           image="/favicon.ico"
           imageAlt="Me "
-        /> */}
+        />
       </section>
-      <section className="container mx-auto p-10">
-        <div className="grid gap-3 sm:grid-cols-1 md:grid-cols-3">
-          {images.map((img) => (
-            <p key={img.publicUrl}>{img.publicUrl}</p>
+      <section className="flex justify-center ">
+        <div className="max-w-6xl grid-cols-2 gap-2 md:grid md:grid-cols-4">
+          {splittedArray.map((arr, i) => (
+            <div
+              className="grid gap-2"
+              key={i}
+            >
+              {arr.map((img, i) => (
+                <div key={img.publicUrl}>
+                  <Image
+                    width={1920}
+                    height={1080}
+                    className="h-full max-w-full rounded-lg object-cover"
+                    alt="Gallery image"
+                    src={img.publicUrl}
+                  />
+                </div>
+              ))}
+            </div>
           ))}
         </div>
       </section>
