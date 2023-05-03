@@ -13,5 +13,6 @@ export default async (req: NextRequest, res: NextResponse) => {
       publicUrl: path.join('/', 'gallery', name),
     };
   });
+  //@ts-ignore
   res.json(images);
 };
