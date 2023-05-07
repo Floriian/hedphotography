@@ -3,6 +3,7 @@ import SideCard from '../components/SideCard';
 import HeroImage from '../components/HeroImage';
 import { Allison } from '@next/font/google';
 import Image from 'next/image';
+import axios from '../utils/axios';
 
 const allison = Allison({
   weight: '400',
@@ -13,8 +14,7 @@ type Props = {
 };
 
 export async function getStaticProps() {
-  const response = await fetch('http://Localhost:3000/api/getGalleryImages');
-  const images = await response.json();
+  const { data: images } = await axios('/getGalleryImages');
   return {
     props: {
       images,
