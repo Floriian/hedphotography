@@ -2,14 +2,14 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["floxbaayonmzzoqtasrc.supabase.co"],
+    domains: ['floxbaayonmzzoqtasrc.supabase.co'],
   },
   experimental: {
     fontLoaders: [
       {
-        loader: "@next/font/google",
+        loader: '@next/font/google',
         options: {
-          subsets: ["latin"],
+          subsets: ['latin'],
         },
       },
     ],
