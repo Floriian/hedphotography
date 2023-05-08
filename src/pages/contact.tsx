@@ -1,5 +1,5 @@
 import React from 'react';
-function contact() {
+function Contact() {
   return <div className="flex h-screen items-center justify-center">asd</div>;
 }
-export default contact;
+export default Contact;

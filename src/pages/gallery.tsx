@@ -2,8 +2,8 @@ import React from 'react';
 
 //TODO
 
-function gallery() {
-  return <div>gallery</div>;
+function Gallery() {
+  return <div>Gallery</div>;
 }
 
-export default gallery;
+export default Gallery;
