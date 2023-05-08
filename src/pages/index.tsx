@@ -13,7 +13,7 @@ type Props = {
   images: Array<{ name: string; publicUrl: string }>;
 };
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_VERCEL_URL}/getGalleryImages`,
   );
