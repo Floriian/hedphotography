@@ -4,6 +4,7 @@ import HeroImage from '../components/HeroImage';
 import { Allison } from '@next/font/google';
 import Image from 'next/image';
 import serverFetch from '../utils/fetch';
+import Footer from '../components/Footer';
 
 const allison = Allison({
   weight: '400',
@@ -78,6 +79,7 @@ function Index({ images }: Props) {
           ))}
         </div>
       </section>
+      <Footer />
     </div>
   );
 }
