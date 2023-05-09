@@ -50,10 +50,10 @@ function Index({ images }: Props) {
       </section>
       <section className="flex justify-center">
         <SideCard
-          content="ipsum"
           href="/about-me"
           image="/favicon.ico"
           imageAlt="Me "
+          content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur nulla accusantium possimus totam aspernatur dolorum ullam. Vel velit ducimus at quia ea doloribus quasi dolorum officia. In ducimus culpa nulla."
         />
       </section>
       <section className="flex justify-center ">

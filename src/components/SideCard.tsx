@@ -11,8 +11,8 @@ type Props = {
 
 export default function SideCard({ image, imageAlt, content, href }: Props) {
   return (
-    <div className="m-2 mt-5 w-auto rounded-xl border-gray-400 bg-white p-5 shadow-md shadow-black transition-all duration-300">
-      <div className="flex">
+    <div className="m-2 mt-5 flex w-auto rounded-xl border-gray-400 bg-white p-5 shadow-md shadow-black transition-all duration-300">
+      <div className="flex flex-col md:flex-row">
         {image && imageAlt ? (
           <Image
             src={image}
